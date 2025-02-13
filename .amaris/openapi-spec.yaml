@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: Beer API
+  version: 1.0.0
+  description: API para obtener y crear información sobre cervezas.
+
+paths:
+  /beers/{id}:
+    get:
+      summary: Obtener información de una cerveza por ID
+      description: Retorna los detalles de una cerveza específica basada en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la cerveza
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int64
+                        example: 2
+                      name:
+                        type: string
+                        example: "Cristal"
+                      price:
+                        type: number
+                        format: float
+                        example: 8.25
+                      description:
+                        type: string
+                        example: ""
+                      created_at:
+                        type: string
+                        format: date-time
+                        example: "2025-02-13T18:05:52.445413Z"
+                      updated_at:
+                        type: string
+                        format: date-time
+                        example: "0001-01-01T00:00:00Z"
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: "ok"
+                        message:
+                          type: string
+                          example: "¡listo!"
+        '400':
+          description: Solicitud inválida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: "INVALID_REQUEST"
+                        message:
+                          type: string
+                          example: "Request is not well-formed, syntactically incorrect, or violates schema."
+
+  /beers:
+    post:
+      summary: Crear una nueva cerveza
+      description: Crea una nueva cerveza con la información proporcionada.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Cristal"
+                price:
+                  type: number
+                  format: float
+                  example: 7.5
+              required:
+                - name
+                - price
+      responses:
+        '200':
+          description: Cerveza creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int64
+                        example: 2
+                      name:
+                        type: string
+                        example: "Cristal"
+                      price:
+                        type: number
+                        format: float
+                        example: 7.5
+                      description:
+                        type: string
+                        example: ""
+                      created_at:
+                        type: string
+                        format: date-time
+                        example: "2025-02-13T18:05:52.445413Z"
+                      updated_at:
+                        type: string
+                        format: date-time
+                        example: "0001-01-01T00:00:00Z"
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: "record_created"
+                        message:
+                          type: string
+                          example: "¡listo!"
+        '400':
+          description: Solicitud inválida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: "INVALID_REQUEST"
+                        message:
+                          type: string
+                          example: "Request is not well-formed, syntactically incorrect, or violates schema."
