@@ -35,7 +35,7 @@ En este proyecto, se identifican las siguientes capas:
 1. **model**: Contiene las definiciones de las estructuras de datos y entidades como `error.go`, `router.go`, etc
 2. **domain**: Contiene la lógica de negocio agrupada en casos de uso e intefaces(para la inversión de de pendencias), en carpetas como `search` .
 3. **infrastructure**: Maneja la interacción con servicios externos, bases de datos, llamada a otros servicios  y otros sistemas.
-    - handler: Actúan como interfaces de entrada que reciben las solicitudes y responden a los clientes, se usa fiber.
+    - handler: Actúan como interfaces de entrada que reciben las solicitudes y responden a los clientes, se usa Gin.
 4. **bootstrap**: Contiene scripts o archivos que configuran y preparan el entorno del proyecto.
 5. .**amaris**: Contiene la documentación en **Open API** del endpoint principal del servicio
 
